@@ -15,7 +15,8 @@ RUN mkdir -p /root/source
 COPY --from=source_code /source_code/install/jupyter /root/source
 WORKDIR /root/source
 
-RUN conda install openjdk=11
+RUN apt-get install -y fontconfig
+RUN conda install openjdk=11 && java -version
 RUN chmod +x *.sh && ./install.sh
 RUN rm -rf /root/source
 
