@@ -6,6 +6,7 @@ services:
       - "8889:8888"
     environment:
       JUPYTER_TOKEN: password
+      SHELL: /bin/bash
     volumes:
       - ./data:/root/data
     entrypoint: sh -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/root --allow-root'
