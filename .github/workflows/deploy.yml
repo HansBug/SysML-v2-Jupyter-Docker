@@ -11,6 +11,14 @@ name: Publish Docker Image
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
   push_to_registries:
