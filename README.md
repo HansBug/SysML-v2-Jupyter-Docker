@@ -2,6 +2,8 @@
 
 Jupyter Docker of Systems-Modeling/SysML-v2-Release
 
+Online demo: https://huggingface.co/spaces/HansBug/SysML-v2-Jupyter
+
 ## Install docker-compose
 
 * With `apt-get` on ubuntu
