@@ -52,7 +52,7 @@ jobs:
             {
               "repo": {
                 "name": "${{ github.repository }}",
-                "branch": "${{ github.event.inputs.branch }}",
+                "branch": "${{ github.event.inputs.branch }}"
               }
             }
 
