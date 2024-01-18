@@ -11,6 +11,9 @@ name: Publish Docker Image
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - data-refreshed
   push:
     branches:
       - 'main'
