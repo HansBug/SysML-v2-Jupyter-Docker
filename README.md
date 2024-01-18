@@ -2,7 +2,9 @@
 
 Jupyter Docker of Systems-Modeling/SysML-v2-Release
 
-Online demo: https://huggingface.co/spaces/HansBug/SysML-v2-Jupyter
+Docker Hub: https://hub.docker.com/r/hansbug/sysml-v2-jupyter/tags
+
+Online Demo on Huggingface Space: https://huggingface.co/spaces/HansBug/SysML-v2-Jupyter
 
 ## Install docker-compose
 
