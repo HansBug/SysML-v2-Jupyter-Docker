@@ -16,6 +16,7 @@ on:
       - 'main'
     tags:
       - 'v*'
+      - '20*-*'
   pull_request:
     branches:
       - 'main'
