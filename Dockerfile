@@ -4,7 +4,7 @@ USER root:root
 
 RUN apt-get update && apt-get install -y git
 RUN mkdir -p /source_code
-RUN git clone https://github.com/Systems-Modeling/SysML-v2-Release.git -b _BRANCH_ /source_code
+RUN git clone https://github.com/Systems-Modeling/SysML-v2-Release.git -b 2023-02 /source_code
 
 # Final image
 FROM datajoint/miniconda3
