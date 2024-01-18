@@ -1,0 +1,51 @@
+name: Sync From Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch From Release Repository'
+        required: true
+
+jobs:
+  contents:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.8 ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.3.0
+        with:
+          fetch-depth: 20
+          submodules: 'recursive'
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Sync Full Branches
+        run: |
+          git fetch --all
+          git checkout branch
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y make wget curl cloc
+      - name: Change Commit
+        if: ${{ github.event_name == 'push' }}
+        id: commit
+        run: |
+          git checkout -b ${{ github.event.inputs.branch }}
+          sed -i 's/_BRANCH_/${{ github.event.inputs.branch }}/g' Dockerfile
+          git config user.name 'HansBug'
+          git config user.email 'hansbug@buaa.edu.cn'
+          git add -A
+          git diff-index --quiet HEAD || git commit -a -m "dev(hansbug): auto sync $(date -R) from release ${{ github.event.inputs.branch }}"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        if: ${{ github.event_name == 'push' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event.inputs.branch }}
+
