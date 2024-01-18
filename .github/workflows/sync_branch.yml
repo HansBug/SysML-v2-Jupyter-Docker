@@ -42,5 +42,17 @@ jobs:
           git add -A
           git diff-index --quiet HEAD || git commit -a -m "dev(hansbug): auto sync $(date -R) from release ${{ github.event.inputs.branch }}"
           git push --set-upstream origin ${{ github.event.inputs.branch }}
-
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{ github.repository }}
+          event-type: data-refreshed
+          client-payload: |-
+            {
+              "repo": {
+                "name": "${{ github.repository }}",
+                "branch": "${{ github.event.inputs.branch }}",
+              }
+            }
 
