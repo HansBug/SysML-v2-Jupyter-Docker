@@ -41,7 +41,7 @@ jobs:
           git config user.email 'hansbug@buaa.edu.cn'
           git add -A
           git diff-index --quiet HEAD || git commit -a -m "dev(hansbug): auto sync $(date -R) from release ${{ github.event.inputs.branch }}"
-          git push --set-upstream origin ${{ github.event.inputs.branch }}
+          git push -f --set-upstream origin ${{ github.event.inputs.branch }}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
