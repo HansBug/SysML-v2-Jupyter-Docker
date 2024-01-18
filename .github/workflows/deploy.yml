@@ -14,7 +14,7 @@ on:
   push:
     branches:
       - 'main'
-      - '20*-*'
+      - '20*'
     tags:
       - 'v*'
       - '20*-*'
